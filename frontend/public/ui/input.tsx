@@ -1,14 +1,18 @@
+"use client";
+import React, { useState, useEffect } from "react";
 import { GetIcon } from "@/components/svg-icons";
 import { cva } from "class-variance-authority";
-import { useState, useEffect } from "react";
+
 const InputStyles = cva(["outline-none bg-transparent border-0"], {
   variants: {
     intent: {
       primary: [
-        "bg-blue-500",
-        "text-white",
-        "border-transparent",
-        "hover:bg-blue-600",
+        "w-full",
+        "text-gray-900",
+        "placeholder-gray-600",
+        "bg-gray-50",
+        "border",
+        "rounded-md",
         "form-input",
       ],
       primarySearch: [
@@ -102,11 +106,11 @@ const Input = ({
       {label && (
         <div className="mb-1">
           <label className="pb-3 font-semibold">
-            {label} {<span className="text-red-800"> {"  "}*</span>}
+            {label} {<span className="text-red-900"> {"  "}*</span>}
           </label>
         </div>
       )}
-      <div className="flex items-center justify-start border-2 border-gray-100">
+      <div className="relative flex items-center border-2 border-gray-500 rounded-md">
         <input
           autoFocus={autofocus}
           type={inputType}
@@ -128,6 +132,7 @@ const Input = ({
         />
         {type == "password" && (
           <span
+            className="mr-1"
             onClick={() => {
               setInputType(inputType === "text" ? "password" : "text");
               console.log(inputType);
@@ -139,6 +144,7 @@ const Input = ({
           </span>
         )}
       </div>
+
       {error && touched && <div className="text-red-600">{error}</div>}
     </>
   );

@@ -1,8 +1,8 @@
-import React from "react";
-import { useRef } from "react";
+"use client";
+import React, { useRef } from "react";
 import { cva } from "class-variance-authority";
 
-const button = cva("button rounded-md ", {
+const button = cva(["button  text-center"], {
   variants: {
     intent: {
       primary: [
@@ -155,26 +155,27 @@ const Button = ({
 }: ButtonProps) => {
   const buttonref: any = useRef();
 
-  return as === "button" ? (
+  return(
+    as === "button" ? (
     <button
       type={type}
       disabled={disabled}
       onClick={onClick}
-      className={button({ intent, size, rounded, class: className })}
+      className={button({ intent, size, rounded,  class: `${className} ${disabled && 'cursor-not-allowed'}` })}
       ref={btnref || buttonref}
     >
       {children}
     </button>
   ) : (
-    <span
+    <button
       aria-disabled={disabled}
       onClick={onClick}
-      className={button({ intent, size, rounded, class: className })}
+      className={button({ intent, size, rounded, class: `${className} ${disabled && 'cursor-not-allowed'}`  })}
       ref={buttonref || btnref}
     >
       {children}
-    </span>
-  );
+    </button>
+  ));
 };
 
 export default Button;

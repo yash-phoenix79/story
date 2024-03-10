@@ -1,7 +1,7 @@
 type props = {
   label?: string;
   onChange?: () => void;
-  value?: string | number | boolean | undefined;
+  value?: string | number | boolean;
   name?: string;
   updateValue?: (value: string | number | boolean) => void;
   setFeildValue?: (name: string, value: string | number | boolean) => void;
@@ -18,14 +18,20 @@ const Checkbox = ({
   return (
     <div className="flex items-center justify-start">
       <input
+        id={name}
         type="checkbox"
-        value={""}
+        value={value}
         onChange={(e: any) => {
-          setFeildValue && name && setFeildValue(name, e.target.Checked);
-          updateValue && updateValue(e.target.Checked);
+          console.log(e.target.checked);
+          setFeildValue && name && setFeildValue(name, e.target.checked);
+          updateValue && updateValue(e.target.checked);
         }}
       />
-      {label && <label className="pl-2 font-semibold">{label}</label>}
+      {label && (
+        <label htmlFor={name} className="pl-2 font-semibold">
+          {label}
+        </label>
+      )}
     </div>
   );
 };
