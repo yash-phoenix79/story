@@ -1,6 +1,7 @@
 "use client";
-import Input from "@/public/ui/input";
+import React, { useState, useEffect } from "react";
 import { Formik, Form } from "formik";
+import Input from "@/public/ui/input";
 import * as yup from "yup";
 import { GetIcon } from "@/components/svg-icons";
 import Button from "@/public/ui/Button";
@@ -8,6 +9,19 @@ import Link from "next/link";
 import Checkbox from "@/public/ui/checkbox";
 
 export default function Login() {
+  // const [data, setData] = useState<any>({});
+
+  const ipAndLocatoion = () => {
+    fetch("https://ipapi.co/json")
+      .then((res) => res.json())
+      .then((res) => console.log(res))
+      .catch((e) => console.log(e));
+  };
+
+  useEffect(() => {
+    ipAndLocatoion();
+  }, []);
+
   const loginSchema = yup.object({
     email: yup
       .string()
@@ -20,16 +34,16 @@ export default function Login() {
   });
 
   return (
-    <div className="flex flex-col justify-center w-full h-screen text-sm md:text-base md:flex-row">
+    <div className="flex flex-col justify-center w-full h-screen text-xs font-semibold md:text-base md:flex-row">
       <div
-        className="flex flex-col items-center justify-center w-full bg-no-repeat bg-cover h-1/2 md:h-screen md:w-1/2"
+        className="flex flex-col items-center justify-center w-full bg-no-repeat bg-cover h-1/3 md:h-screen md:w-1/2"
         style={{
           backgroundImage:
             'url( "https://img.freepik.com/free-vector/colorful-icons-set-design_79603-1268.jpg?w=996")',
         }}
       >
-        <div className="flex flex-col items-center p-3 m-3">
-          <h1 className="font-mono text-xl font-semibold text-center">
+        <div className="flex flex-col items-center p-3 m-3 text-xs md:text-base">
+          <h1 className="font-mono text-sm font-semibold text-center md:text-xl">
             Join Us Today!
           </h1>
           <p className="font-sans font-semibold">
@@ -56,28 +70,31 @@ export default function Login() {
           </div>
         </div>
       </div>
-      <div className="flex flex-col items-center justify-center w-full py-2 bg-gray-100 h-1/2 md:h-screen md:w-1/2">
-        <div className="flex flex-col items-center justify-center w-full h-full text-black bg-white rounded-md shadow-md md:w-11/12 md:px-3 md:h-2/3">
-          <div className="flex items-center justify-center w-full h-8">
+      <div className="flex flex-col items-center justify-start w-full py-2 bg-gray-100 md:justify-center h-2/3 md:h-screen md:w-1/2">
+        <div className="flex flex-col items-center justify-start w-11/12 h-full text-black bg-white rounded-md shadow-md md:justify-center md:w-11/12 md:px-3 md:h-2/3">
+          <div className="flex items-center justify-center w-full p-2 mb-3 text-sm md:text-lg">
             <h1 className="font-serif animate-bounce">Login Here</h1>
-          </div>{" "}
-          <div className="w-11/12 md:w-full">
+          </div>
+          <div className="w-11/12 text-sm md:w-full md:text-base" >
             <Formik
               initialValues={{
                 email: "",
                 password: "",
-                showPassword: false,
-                remeber: false,
+                remember: false,
               }}
               validationSchema={loginSchema}
               onSubmit={(values) => {
                 console.log(values);
               }}
             >
-              {(prop) => {
-                const { values, touched, errors, isSubmitting, setFieldValue } =
-                  prop;
-                console.log(values.remeber);
+              {(prop: any) => {
+                const {
+                  values,
+                  touched,
+                  errors,
+                  isSubmitting,
+                  setFieldValue,
+                } = prop;
                 return (
                   <Form>
                     <div className="w-full h-auto mb-5">
@@ -86,7 +103,7 @@ export default function Login() {
                         className="w-full bg-transparent "
                         type="text"
                         name="Email"
-                        intent="primarySearch"
+                        intent="primary"
                         size="md"
                         autofocus={true}
                         touched={touched.email}
@@ -96,14 +113,14 @@ export default function Login() {
                         updateValue={(e) => setFieldValue("email", e)}
                       />
                     </div>
-                    <div className="flex items-center justify-between w-full mb-5 items-centers">
+                    <div className="flex items-center justify-between w-full mb-5 border-gray-400 items-centers">
                       <div className="w-full h-auto ">
                         <Input
                           label="Password"
                           className="w-full"
                           type="password"
                           name="password"
-                          intent="primarySearch"
+                          intent="primary"
                           size="md"
                           autofocus={true}
                           touched={touched.password}
@@ -127,11 +144,10 @@ export default function Login() {
                       </div>
                       <div>
                         <Link
-                          href={"/forgot"}
+                          href={"/login/reset"}
                           className="font-semibold text-blue-700"
                         >
-                          {" "}
-                          Forgot Password
+                          Forgot Password ?
                         </Link>
                       </div>
                     </div>
