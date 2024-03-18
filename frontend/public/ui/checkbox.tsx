@@ -20,7 +20,7 @@ const Checkbox = ({
       <input
         id={name}
         type="checkbox"
-        value={value}
+        value={""}
         onChange={(e: any) => {
           console.log(e.target.checked);
           setFeildValue && name && setFeildValue(name, e.target.checked);
