@@ -75,7 +75,7 @@ export default function Login() {
           <div className="flex items-center justify-center w-full p-2 mb-3 text-sm md:text-lg">
             <h1 className="font-serif animate-bounce">Login Here</h1>
           </div>
-          <div className="w-11/12 text-sm md:w-full md:text-base" >
+          <div className="w-11/12 text-sm md:w-full md:text-base">
             <Formik
               initialValues={{
                 email: "",
@@ -88,13 +88,8 @@ export default function Login() {
               }}
             >
               {(prop: any) => {
-                const {
-                  values,
-                  touched,
-                  errors,
-                  isSubmitting,
-                  setFieldValue,
-                } = prop;
+                const { values, touched, errors, isSubmitting, setFieldValue } =
+                  prop;
                 return (
                   <Form>
                     <div className="w-full h-auto mb-5">
