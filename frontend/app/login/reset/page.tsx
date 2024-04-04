@@ -25,15 +25,17 @@ export default function ForgotPaswword() {
     ),
   });
   return (
-    <div className="flex flex-col items-center justify-center w-full h-screen font-medium text-black bg-gradient-radial from-cyan-200 to-cyan-700 ">
-      <div className="flex items-start w-11/12 p-5 bg-white rounded-md shadow-lg h-5/6 justify-evenly md:w-8/12 md:h-2/3">
-        <div className="w-5/12 h-full md:6/12 ">
+    <div className="flex flex-col items-center justify-center w-full min-h-screen font-medium text-black bg-gradient-radial from-cyan-200 to-cyan-700 ">
+      <div className="flex  flex-col md:flex-row items-center w-11/12 p-5 my-5  bg-white rounded-md shadow-lg min-h-5/6 justify-evenly md:w-8/12 md:h-2/3">
+        <div className="w-8/12 h-1/6 md:6/12 ">
           <Image src={forgotpassword} alt="forgot" className="w-full h-full " />
         </div>
         <hr className="h-full m-2 border border-gray-300 border-dashed" />
-        <div className="flex flex-col items-center justify-center w-6/12 h-full md:w-7/12 ">
+        <div className="flex flex-col items-center justify-center  w-12/12 h-full md:w-7/12 ">
           <div className="w-full text-center h-1/6">
-            <h1 className="teext-base md:text-xl">Forgot Password ?</h1>
+            <h1 className="teext-base md:text-xl pb-5 md:pb-10">
+              Forgot Password ?
+            </h1>
           </div>
           <div className="flex flex-col w-full h-full text-sm md:text-base ">
             <Formik
@@ -44,13 +46,8 @@ export default function ForgotPaswword() {
               }}
             >
               {(props: any) => {
-                const {
-                  values,
-                  setFieldValue,
-                  touched,
-                  errors,
-                  isSubmitting,
-                } = props;
+                const { values, setFieldValue, touched, errors, isSubmitting } =
+                  props;
 
                 console.log(values);
                 return (
@@ -101,7 +98,7 @@ export default function ForgotPaswword() {
                         className="md:w-6/12 "
                         disabled={isSubmitting}
                       >
-                    {isSubmitting ? "Processing..." :"Reset Password"}
+                        {isSubmitting ? "Processing..." : "Reset Password"}
                       </Button>
                     </div>
                     <div className="mt-5 space-y-4 text-center text-gray-600 items">

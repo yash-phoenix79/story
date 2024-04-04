@@ -4,7 +4,7 @@ type props = {
   value?: string | number | boolean;
   name?: string;
   updateValue?: (value: string | number | boolean) => void;
-  setFeildValue?: (name: string, value: string | number | boolean) => void;
+  setFieldValue?: (name: string, value: string | number | boolean) => void;
 };
 
 const Checkbox = ({
@@ -12,7 +12,7 @@ const Checkbox = ({
   value,
   name,
   onChange,
-  setFeildValue,
+  setFieldValue,
   updateValue,
 }: props) => {
   return (
@@ -23,8 +23,8 @@ const Checkbox = ({
         value={""}
         onChange={(e: any) => {
           console.log(e.target.checked);
-          setFeildValue && name && setFeildValue(name, e.target.checked);
-          updateValue && updateValue(e.target.checked);
+          setFieldValue && name && setFieldValue(name, e.target.checked);
+          updateValue && name && updateValue(e.target.checked);
         }}
       />
       {label && (

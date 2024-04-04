@@ -76,6 +76,7 @@ type props = {
   disabled?: boolean;
   onClick?: () => void;
   onBlur?: any | null;
+  passwordIconColor?: string;
 };
 
 const Input = ({
@@ -95,6 +96,7 @@ const Input = ({
   touched,
   onBlur,
   onClick,
+  passwordIconColor,
 }: props) => {
   const [inputType, setInputType] = useState(type);
   useEffect(() => {
@@ -132,20 +134,24 @@ const Input = ({
         />
         {type == "password" && (
           <span
-            className="mr-1"
+            className={`mr-1 ${passwordIconColor}`}
             onClick={() => {
               setInputType(inputType === "text" ? "password" : "text");
-              console.log(inputType);
             }}
           >
             <GetIcon
               type={inputType === "password" ? "hidePassword" : "showPassword"}
+              fill="#fff"
             />
           </span>
         )}
       </div>
 
-      {error && touched && <div className="text-red-600">{error}</div>}
+      {error && touched && (
+        <div className="text-red-600 animate-pulse transition-all pt-2">
+          {error}
+        </div>
+      )}
     </>
   );
 };

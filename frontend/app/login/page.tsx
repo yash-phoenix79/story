@@ -61,11 +61,11 @@ export default function Login() {
               as="button"
               className="flex items-center justify-center w-6/12"
               onClick={() => {
-                window.location.href = "/";
+                window.location.href = "/signup";
               }}
             >
               Signup {"  "}
-              <GetIcon type="rightArrow" stroke="#fff" />
+              <GetIcon type="rightArrow" fill="#fff" />
             </Button>
           </div>
         </div>
@@ -132,7 +132,7 @@ export default function Login() {
                           <Checkbox
                             label="Rememeber Me"
                             value={values.remeber}
-                            setFeildValue={setFieldValue}
+                            updateValue={(e) => setFieldValue("remember", e)}
                             name="remember"
                           />
                         </div>
